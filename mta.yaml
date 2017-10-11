@@ -1,5 +1,5 @@
-ID: live5
 _schema-version: '2.0'
+ID: live5
 description: Twitts real-time analysis
 version: 0.0.1
 
@@ -7,3 +7,26 @@ modules:
  - name: uidev
    type: html5
    path: uidev
+   requires:
+    - name: live5uaa
+
+
+ - name: db
+   type: hdb
+   path: db
+   requires:
+    - name: hdi-container
+
+resources:
+ - name: live5uaa
+   type: com.sap.xs.uaa
+   parameters:
+      path: ./xs-security.json
+ - name: hdi-container
+   parameters:
+      config:
+         schema: LIVE5
+   properties:
+      hdi-container-name: ${service-name}
+   type: com.sap.xs.hdi-container
+
